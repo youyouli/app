@@ -1,0 +1,35 @@
+<ion-view view-title="消息">
+    <ion-nav-title>微信</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-search" ></button>
+        <button class="button button-clear icon ion-plus" ></button>
+    </ion-nav-buttons>
+        <ion-tabs class="tabs-icon-top tabs-standard">
+            <ion-tab title="消息" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                <ion-view>
+                    <ion-content>
+                        <ion-infinite-scroll on-infinite="new()" >
+                        </ion-infinite-scroll>
+                        <div class="list">
+                            <a class="item item-avatar" href="#" ng-repeat="Item in item">
+                                <img ng-src="{{Item.img}}">
+                                <h2>{{Item.h1}}<i class="item-note">{{Item.time}}</i></h2>
+                                <p>{{Item.p}}</p>
+                            </a>
+                        </div>
+                    </ion-content>
+                </ion-view>
+            </ion-tab>
+            <ion-tab title="联系人" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                <ion-view>
+                    联系人
+                </ion-view>
+            </ion-tab>
+            <ion-tab title="通讯录" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                通讯录
+            </ion-tab>
+            <ion-tab title="设置" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                设置
+            </ion-tab>
+        </ion-tabs>
+</ion-view>
