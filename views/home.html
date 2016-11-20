@@ -1,35 +1,95 @@
-<ion-view view-title="消息">
+<ion-view >
     <ion-nav-title>微信</ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-search" ></button>
         <button class="button button-clear icon ion-plus" ></button>
     </ion-nav-buttons>
         <ion-tabs class="tabs-icon-top tabs-standard">
-            <ion-tab title="消息" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
-                <ion-view>
-                    <ion-content>
-                        <ion-infinite-scroll on-infinite="new()" >
-                        </ion-infinite-scroll>
-                        <div class="list">
-                            <a class="item item-avatar" href="#" ng-repeat="Item in item">
-                                <img ng-src="{{Item.img}}">
-                                <h2>{{Item.h1}}<i class="item-note">{{Item.time}}</i></h2>
-                                <p>{{Item.p}}</p>
-                            </a>
-                        </div>
-                    </ion-content>
-                </ion-view>
-            </ion-tab>
-            <ion-tab title="联系人" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
-                <ion-view>
-                    联系人
-                </ion-view>
-            </ion-tab>
-            <ion-tab title="通讯录" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
-                通讯录
-            </ion-tab>
-            <ion-tab title="设置" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
-                设置
-            </ion-tab>
+            <ion-slide-box>
+                <ion-slide>
+                    <ion-tab title="消息" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                        <ion-view>
+                            <ion-content>
+                                <div class="list">
+                                    <a class="item item-avatar" href="#" ng-repeat="Item in item">
+                                        <img ng-src="{{Item.img}}">
+                                        <h2>{{Item.h1}}<i class="item-note">{{Item.time}}</i></h2>
+                                        <p>{{Item.p}}</p>
+                                    </a>
+                                </div>
+                                <ion-infinite-scroll on-infinite="new()" ></ion-infinite-scroll>
+                            </ion-content>
+                        </ion-view>
+                    </ion-tab>
+                </ion-slide>
+                <ion-slide>
+                    <ion-tab title="联系人" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                        <ion-view>
+                            <ion-content>
+                                <ion-list>
+                                    <ion-item class="item-icon-left" ui-sref="dialogue">
+                                        <i class="icon ion-person-add"></i>
+                                        新的朋友
+                                    </ion-item>
+                                    <ion-item class="item-icon-left">
+                                        <i class="icon ion-volume-high"></i>
+                                        群聊
+                                    </ion-item>
+                                    <ion-item class="item-icon-left">
+                                        <i class="icon ion-person-add"></i>
+                                        标签
+                                    </ion-item>
+                                    <ion-item class="item-icon-left">
+                                        <i class="icon ion-volume-high"></i>
+                                        公众号
+                                    </ion-item>
+                                    <ion-item class="item-divider" >
+                                        a
+                                    </ion-item>
+                                    <ion-item class="item-icon-left">
+                                        <i class="icon ion-person"></i>
+                                        爸爸
+                                    </ion-item>
+                                    <ion-item class="item-icon-left">
+                                        <i class="icon ion-person"></i>
+                                        爸爸
+                                    </ion-item>
+                                    <ion-item class="item-divider">
+                                        b
+                                    </ion-item>
+                                    <ion-item class="item-icon-left">
+                                        <i class="icon ion-person"></i>
+                                        本本
+                                    </ion-item>
+                                    <ion-item class="item-button-right">
+                                        hello
+                                        <button class="button button-clear  ">
+                                            <i class="icon ion-ios-arrow-right dark"></i>
+                                        </button>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-content>
+                        </ion-view>
+                    </ion-tab>
+                </ion-slide>
+                <ion-slide>
+                    <ion-tab title="通讯录" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                        <ion-view>
+                            <content>
+                                通讯录
+                            </content>
+                        </ion-view>
+                    </ion-tab>
+                </ion-slide>
+                <ion-slide>
+                    <ion-tab title="通讯录" icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+                        <ion-view>
+                            <content>
+                               设置
+                            </content>
+                        </ion-view>
+                    </ion-tab>
+                </ion-slide>
+            </ion-slide-box>
         </ion-tabs>
 </ion-view>

@@ -3,59 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <title>app</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">-->
     <link rel="stylesheet" href="css/ionic.css">
     <script src="js/ionic.bundle.js"></script>
-    <style>
-        .scroll-content .list a img{border-radius:10%;!important;}
-        .bar-footer .button-bar .button .badge{display:inline-block;padding:4px;top:-8px;font-size:5px;right:12px;border-radius:50%;!important;}
-    </style>
 </head>
-<body ng-controller="mainctr">
-<ion-nav-bar class="bar-dark" align-title="left"  >
-    <ion-nav-back-button>fanhuui</ion-nav-back-button>
-    <!--<h1 class="title title-left">微信</h1>-->
-    <!--<div class="buttons">-->
-        <!--<button class="button button-clear icon ion-search" ></button>-->
-        <!--<button class="button button-clear icon ion-plus" ></button>-->
-    <!--</div>-->
+<body ng-controller="mainCtr">
+<ion-nav-bar class="bar-dark" align-title="left">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
 </ion-nav-bar>
 <ion-nav-view></ion-nav-view>
 </body>
 <script>
+    var a=3;
+    var b=5;
+    alert(a+b)
     var myapp=angular.module("app",["ionic"])
             .config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
                 $stateProvider.state("home",{
-                        url:"/home",
-                        templateUrl:"views/home.html",
+                    url:"/home",
+                    templateUrl:"views/home.html"
                 });
-                $urlRouterProvider.otherwise("/home");
-                $ionicConfigProvider.tabs.position("bottom")
-                $ionicConfigProvider.tabs.style("standard")
+                $stateProvider.state("dialogue",{
+                    url:"/dialogue",
+                    templateUrl:"views/dialogue.html"
+                });
+                $urlRouterProvider.otherwise("home");
+                $ionicConfigProvider.tabs.position("bottom");
+                $ionicConfigProvider.tabs.style("standard");
             })
-    myapp.controller("mainctr",function($timeout,$http,$scope,$ionicScrollDelegate ){
-        $ionicScrollDelegate.scrollTop(true);
-        $ionicScrollDelegate.scrollBottom(true);
-        $scope.Data=null;
-        $scope.item=[];
-        var number=0;
-        $scope.new=function(){
-            $http.get("data/shuju.json").success(function(data){
-                $scope.Data=data;
-            });
-            $timeout(function(){
-            for(var i=0;i<10;i++){
-                number++;
-                if(number>=$scope.Data.length){
-                    $scope.$broadcast("scroll.infiniteScrollComplete");
-                    return;
-                }else{
-                    $scope.item.push($scope.Data[number]);
-                }
-            }
-                $scope.$broadcast("scroll.infiniteScrollComplete")
-        },500);
-        }
-    })
+            .controller("mainCtr",function($scope,$http,$timeout){
+                $http.get("data/shuju.json").success(function(data){
+                    $scope.Data=data;
+                });
+                $scope.item=[];
+                $scope.number=0;
+                $scope.new=function(){
+                    $timeout(function(){
+                        for(var i=0;i<10;i++){
+                            if($scope.number>=$scope.Data.length){
+                                $scope.$broadcast("scroll.infiniteScrollComplete");
+                                return
+                            }else{
+                                $scope.item.push($scope.Data[$scope.number]);
+                                $scope.number++;
+                            }
+                        }
+                        $scope.$broadcast("scroll.infiniteScrollComplete");
+                    },500)
+                };
+            })
 </script>
+    <!--<link rel="stylesheet" href="css/ionic.css">-->
+    <!--<script src="js/ionic.bundle.js"></script>-->
+    <!--<style>-->
+        <!--.scroll-content .list a img{border-radius:10%;!important;}-->
+
+        <!--.bar-footer .button-bar .button .badge{display:inline-block;padding:4px;top:-8px;font-size:5px;right:12px;border-radius:50%;!important;}-->
+    <!--</style>-->
+<!--</head>-->
+<!--<body ng-controller="mainctr">-->
+<!--<ion-nav-bar class="bar-dark" align-title="left"  >-->
+    <!--<ion-nav-back-button>fanhuui</ion-nav-back-button>-->
+    <!--&lt;!&ndash;<h1 class="title title-left">微信</h1>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="buttons">&ndash;&gt;-->
+        <!--&lt;!&ndash;<button class="button button-clear icon ion-search" ></button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button class="button button-clear icon ion-plus" ></button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</ion-nav-bar>-->
+<!--<ion-nav-view></ion-nav-view>-->
+<!--</body>-->
+<!--<script>-->
+    <!--var myapp=angular.module("app",["ionic"])-->
+            <!--.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){-->
+                <!--$stateProvider.state("home",{-->
+                        <!--url:"/home",-->
+                        <!--templateUrl:"views/home.html",-->
+                <!--});-->
+                <!--$urlRouterProvider.otherwise("/home");-->
+                <!--$ionicConfigProvider.tabs.position("bottom")-->
+                <!--$ionicConfigProvider.tabs.style("standard")-->
+            <!--})-->
+    <!--myapp.controller("mainctr",function($timeout,$http,$scope,$ionicScrollDelegate ){-->
+        <!--$ionicScrollDelegate.scrollTop(true);-->
+        <!--$ionicScrollDelegate.scrollBottom(true);-->
+        <!--$scope.Data=null;-->
+        <!--$scope.item=[];-->
+        <!--var number=0;-->
+        <!--$scope.new=function(){-->
+            <!--$http.get("data/shuju.json").success(function(data){-->
+                <!--$scope.Data=data;-->
+            <!--});-->
+            <!--$timeout(function(){-->
+            <!--for(var i=0;i<10;i++){-->
+                <!--number++;-->
+                <!--if(number>=$scope.Data.length){-->
+                    <!--$scope.$broadcast("scroll.infiniteScrollComplete");-->
+                    <!--return;-->
+                <!--}else{-->
+                    <!--$scope.item.push($scope.Data[number]);-->
+                <!--}-->
+            <!--}-->
+                <!--$scope.$broadcast("scroll.infiniteScrollComplete")-->
+        <!--},500);-->
+        <!--}-->
+    <!--})-->
+<!--</script>-->
 </html>
